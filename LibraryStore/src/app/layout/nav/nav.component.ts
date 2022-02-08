@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemeService } from 'src/app/core/service/theme.service';
 import { Observable } from 'rxjs';
-import { MenuItem } from 'src/app/data/models/general-parametris';
+import { Response } from '../../shared/models/response.model';
+import { GeneralParametricsService } from 'src/app/data/services/general-parametrics.service';
+import { BrandInfo, MenuItem } from 'src/app/data/models/general-parametrics';
 
 @Component({
   selector: 'app-nav',
@@ -9,20 +11,33 @@ import { MenuItem } from 'src/app/data/models/general-parametris';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  menuItems: MenuItem[] = [];
-  activatedMenuItemId: number = 0;
-  public isDarkTheme$: Observable<boolean> = new Observable<boolean>();
-  constructor(private _themeService: ThemeService) { }
+  public activatedMenuItemId: string = '';
+  public brandInfo$: Observable<Response<BrandInfo>> = new Observable<Response<BrandInfo>>();
+  public menuItems$: Observable<Response<MenuItem[]>> = new Observable<Response<MenuItem[]>>();
+  private _isDarkTheme$: Observable<boolean> = new Observable<boolean>();
+  constructor(private _themeService: ThemeService,
+    private _generalParametricsService: GeneralParametricsService) { }
 
   ngOnInit() {
-    this.isDarkTheme$ = this._themeService.getDarkTheme();
+    this._isDarkTheme$ = this._themeService.getDarkTheme();
+    this._getBrandInfo();
+    this._getMenuItems();
+  }
+
+  private _getBrandInfo(): void {
+    this.brandInfo$ = this._generalParametricsService.getBrandInfo();
+  }
+
+  private _getMenuItems(): void {
+    this.menuItems$ =
+      this._generalParametricsService.getMenuItemsByRole('10000001-0001-0001-0001-000000000001');
   }
 
   toggleTheme(checked: boolean) {
     this._themeService.setDarkTheme(checked);
   }
 
-  changeActivatedMenuItemId(id: number) {
+  changeActivatedMenuItemId(id: string) {
     this.activatedMenuItemId = id;
   }
 }

@@ -11,7 +11,7 @@ import { ThemeService } from '../../core/service/theme.service';
 })
 export class ContentLayoutComponent implements OnInit {
 
-  private _overlayContainer: OverlayContainer ;
+  private _overlayContainer: OverlayContainer;
 
   currentTheme: string = '';
   currentActiveTheme$ = this._themeService.getDarkTheme().pipe(

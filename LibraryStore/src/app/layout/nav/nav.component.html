@@ -1,5 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
+    <ng-container *ngIf="brandInfo$ | async as brandInfo">{{
+      brandInfo.data.name
+    }}</ng-container>
     <a class="navbar-brand" href="#">Navbar</a>
     <button
       class="navbar-toggler"
@@ -14,40 +17,20 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <div *ngFor="let menuItem of menuItems">
-          <div *ngIf="menuItem.children.length === 0; else dropdownItem">
+        <ng-container *ngIf="menuItems$ | async as menuItems">
+          <div *ngFor="let menuItem of menuItems.data">
             <li class="nav-item">
               <a
                 (click)="changeActivatedMenuItemId(menuItem.id)"
                 class="nav-link"
                 [ngClass]="menuItem.id === activatedMenuItemId ? 'active' : ''"
-                [routerLink]="menuItem.link"
+                [routerLink]="menuItem.route"
               >
                 {{ menuItem.title }}
               </a>
             </li>
           </div>
-          <ng-template #dropdownItem>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                [id]="menuItem.id"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                {{ menuItem.title }}
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li *ngFor="let menuItemChild of menuItem.children">
-                  <a class="dropdown-item" [routerLink]="menuItemChild.link">{{
-                    menuItemChild.title
-                  }}</a>
-                </li>
-              </ul>
-            </li>
-          </ng-template>
-        </div>
+        </ng-container>
 
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>

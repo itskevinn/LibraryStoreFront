@@ -5,10 +5,10 @@ export class BrandInfo {
 
 
 export class MenuItem {
-  id: number = 0;
+  id: string = '';
   iconClass: string = '';
   title: string = '';
-  link: string = '';
+  route: string = '';
   children: MenuItem[] = [];
 }
 
