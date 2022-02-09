@@ -4,8 +4,31 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from '../app.component';
-
-
+import {
+  FontAwesomeModule,
+  FaIconLibrary
+} from '@fortawesome/angular-fontawesome';
+import {
+  faPlus,
+  faEdit,
+  faTrash,
+  faTimes,
+  faCaretUp,
+  faCaretDown,
+  faExclamationTriangle,
+  faFilter,
+  faTasks,
+  faCheck,
+  faSquare,
+  faLanguage,
+  faPaintBrush,
+  faLightbulb,
+  faWindowMaximize,
+  faStream,
+  faBook,
+  faUserCircle,
+  faAsterisk
+} from '@fortawesome/free-solid-svg-icons';
 
 
 @NgModule({
@@ -14,7 +37,8 @@ import { AppComponent } from '../app.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    NgbModule
+    NgbModule,
+    FontAwesomeModule
   ],
   declarations: [],
   exports: [
@@ -22,7 +46,8 @@ import { AppComponent } from '../app.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    NgbModule
+    NgbModule,
+    FontAwesomeModule
   ],
   bootstrap: [AppComponent]
 })

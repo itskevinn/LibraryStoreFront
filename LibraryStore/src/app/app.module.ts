@@ -11,6 +11,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { NavComponent } from './layout/nav/nav.component';
 import { AuthModule } from './modules/auth/auth.module';
 import { SharedModule } from './shared/shared.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
 
     AppRoutingModule,
+     FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
