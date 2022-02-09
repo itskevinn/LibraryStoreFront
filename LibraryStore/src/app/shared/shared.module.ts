@@ -27,8 +27,12 @@ import {
   faStream,
   faBook,
   faUserCircle,
-  faAsterisk
+  faAsterisk,
+  faSearch
 } from '@fortawesome/free-solid-svg-icons';
+import { TableComponent } from './components/table/table.component';
+import { MaterialModule } from './material.module';
+import { DataPropertyGetterPipe } from './components/table/pipe/data-property-getter.pipe';
 
 
 @NgModule({
@@ -38,17 +42,50 @@ import {
     ReactiveFormsModule,
     RouterModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MaterialModule
   ],
-  declarations: [],
+  declarations: [
+    TableComponent,
+    DataPropertyGetterPipe
+  ],
   exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MaterialModule,
+
+    TableComponent,
+    DataPropertyGetterPipe
   ],
   bootstrap: [AppComponent]
 })
-export class SharedModule { }
+export class SharedModule {
+  constructor(faIconLibrary: FaIconLibrary) {
+    faIconLibrary.addIcons(
+      faPlus,
+      faEdit,
+      faTrash,
+      faTimes,
+      faCaretUp,
+      faCaretDown,
+      faExclamationTriangle,
+      faFilter,
+      faTasks,
+      faCheck,
+      faSquare,
+      faLanguage,
+      faPaintBrush,
+      faLightbulb,
+      faWindowMaximize,
+      faStream,
+      faBook,
+      faUserCircle,
+      faAsterisk,
+      faSearch
+    );
+  }
+}

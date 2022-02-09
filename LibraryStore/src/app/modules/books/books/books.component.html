@@ -1,1 +1,8 @@
-<p>books works!</p>
+<ng-container *ngIf="books$ | async as books">
+  <app-table
+    [tableData]="books.data"
+    [isFilterable]="true"
+    [tableColumns]="tableColumns"
+    [tableTitle]="tableTitle"
+  ></app-table>
+</ng-container>

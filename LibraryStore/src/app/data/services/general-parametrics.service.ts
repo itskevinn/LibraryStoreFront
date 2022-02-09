@@ -14,11 +14,11 @@ export class GeneralParametricsService {
 
   public getMenuItemsByRole(roleId: string): Observable<Response<MenuItem[]>> {
     return this.http.get<Response<MenuItem[]>>(`${this.baseUrl}/MenuItem/GetByRole/${roleId}`)
-      .pipe(catchError(err => { throw err.json(); }));
+      .pipe(catchError(err => { throw err }));
   }
 
   public getBrandInfo(): Observable<Response<BrandInfo>> {
     return this.http.get<Response<BrandInfo>>(`${this.baseUrl}/BrandInfo/GetBrandInfo`)
-      .pipe(catchError(err => { throw err.json(); }));
+      .pipe(catchError(err => { throw err }));
   }
 }

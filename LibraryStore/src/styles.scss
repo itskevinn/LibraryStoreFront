@@ -1,6 +1,68 @@
 /* You can add global styles to this file, and also import other style files */
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
+
+* {
+  font-family: "manrope", "arial", "sans-serif";
+}
+
+.flex-direction-column {
+  flex-direction: column !important;
+}
+
+.b-0 {
+  border: none;
+}
+
+.bl-0 {
+  border-left: none;
+}
+
+.br-0 {
+  border-right: none;
+}
+.bg-transparent {
+  background-color: transparent;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+.border-radius {
+  border-radius: 1rem !important;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Manrope, "Helvetica Neue", sans-serif;
+}
+
+.bg-success,
+.btn-success {
+  background-color: #198754 !important;
+}
+.bg-primary,
+.btn-primary {
+  background-color: #662c91 !important;
+  border: none !important;
+}
+.bg-warning,
+.btn-warning {
+  background-color: #e59500 !important;
+}
+.bg-info,
+.btn-info {
+  background-color: #2d82b7 !important;
+}
+.bg-danger,
+.btn-danger {
+  background-color: #ff0035 !important;
+}
