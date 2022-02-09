@@ -1,3 +1,8 @@
 .navbar-brand {
   font-family: "Times New Roman", Times, serif;
 }
+
+.navbar {
+  width: 95%;
+  border-radius: 20px;
+}
