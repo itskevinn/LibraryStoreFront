@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { TableColumn } from './model/table-column.model';
-
+import { BUTTON, CHECKBOX, INPUT, RADIO_BUTTON, SELECT, SPAN } from 'src/app/core/constants/custom-table-styles';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -11,6 +11,7 @@ import { TableColumn } from './model/table-column.model';
 })
 export class TableComponent implements OnInit {
 
+  public objectTypes = { BUTTON, CHECKBOX, INPUT, RADIO_BUTTON, SELECT, SPAN };
   public tableDataSource = new MatTableDataSource<any>([]);
   public displayedColumns: string[] = [];
   @ViewChild(MatPaginator, { static: false }) matPaginator: MatPaginator;
@@ -21,6 +22,7 @@ export class TableComponent implements OnInit {
   @Input() isSortable = false;
   @Input() isFilterable = false;
   @Input() tableColumns: TableColumn[] = [];
+  @Input() hasAddButton = false;
   @Input() rowActionIcon: string = '';
   @Input() paginationSizes: number[] = [5, 10, 15];
   @Input() defaultPageSize = this.paginationSizes[1];
@@ -40,6 +42,7 @@ export class TableComponent implements OnInit {
     } else {
       this.displayedColumns = columnNames;
     }
+    console.log(this.tableColumns);
   }
 
   ngAfterViewInit(): void {

@@ -46,7 +46,8 @@ body {
 }
 
 .bg-success,
-.btn-success {
+.btn-success,
+.text-success {
   background-color: #198754 !important;
 }
 .bg-primary,
@@ -63,6 +64,13 @@ body {
   background-color: #2d82b7 !important;
 }
 .bg-danger,
-.btn-danger {
+.btn-danger,
+.text-danger {
   background-color: #ff0035 !important;
+}
+.bg-light-success {
+  background-color: #d3fbeb !important;
+}
+.bg-light-danger {
+  background-color: #fbd3d3 !important;
 }

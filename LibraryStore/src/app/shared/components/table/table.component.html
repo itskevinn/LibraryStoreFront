@@ -1,14 +1,14 @@
 <ng-container class="w-75">
   <div class="row justify-content-center">
-    <div class="col-lg-4 col-md-4 col-sm-6 d-flex align-items-center">
+    <div class="col-lg-7 col-md-7 col-sm-5 col-3 d-flex align-items-center">
       <h2 class="mb-0">
         {{ tableTitle }}
       </h2>
     </div>
-    <div class="col-lg-8 col-md-8 col-sm-6 justify-content-end d-flex">
+    <div class="col-lg-4 col-md-4 col-sm-2 justify-content-end d-flex col-7 align-items-center">
       <ng-container *ngIf="isFilterable" [matColumnDef]="this.rowActionIcon">
         <input
-          class="form-control me-2 bg-white border-radius w-50"
+          class="form-control me-2 bg-white border-radius w-100"
           type="search"
           (keyup)="applyFilter($event)"
           placeholder="Filtrar"
@@ -19,14 +19,21 @@
         </div>
       </ng-container>
     </div>
+    <div class="col-lg-1 col-md-1 col-sm-1 col-2 justify-content-end d-flex my-1">
+      <ng-container *ngIf="isFilterable" [matColumnDef]="this.rowActionIcon">
+        <div class="btn btn-success border-radius">
+          <i class="fas fa-plus"></i>
+        </div>
+      </ng-container>
+    </div>
   </div>
-  <div class="row justify-content-center my-3">
+  <div class="my-3 table-responsive">
     <table
       mat-table
       [dataSource]="tableDataSource"
       matSort
       (matSortChange)="sortTable($event)"
-      class="border-radius"
+      class="w-100"
     >
       <ng-container
         *ngIf="rowActionIcon?.length"
@@ -76,7 +83,53 @@
           *matCellDef="let element"
           [class.text-right]="tableColumn.position == 'right'"
         >
-          {{ element | dataPropertyGetter: tableColumn.dataKey }}
+          <ng-container
+            *ngIf="tableColumn.statusKey && !tableColumn.hasCustomStyle"
+          >
+            <span
+              *ngIf="element[tableColumn.dataKey] === true; else inactive"
+              class="bg-light-success border-radius text-success py-1 px-4"
+            >
+              <b> Activo </b>
+            </span>
+            <ng-template #inactive>
+              <span class="bg-light-danger border-radius text-danger py-1 px-4">
+                <b> Inactivo </b>
+              </span>
+            </ng-template>
+          </ng-container>
+          <ng-container *ngIf="tableColumn.hasCustomStyle">
+            <ng-container
+              *ngIf="tableColumn.customStyle?.type === objectTypes.BUTTON"
+            >
+              <button
+                [ngClass]="element.customStyle.cssClass"
+                (click)="emitRowAction(element)"
+              >
+                {{ element | dataPropertyGetter: tableColumn.dataKey }}
+              </button>
+            </ng-container>
+            <ng-container
+              *ngIf="tableColumn.customStyle?.type === objectTypes.SPAN"
+            >
+              <span
+                [ngClass]="
+                  tableColumn.customStyle
+                    ? tableColumn.customStyle.cssClass
+                    : ''
+                "
+              >
+                <b>
+                  {{ element | dataPropertyGetter: tableColumn.dataKey }}
+                </b>
+              </span>
+            </ng-container>
+          </ng-container>
+          <ng-container
+            *ngIf="!tableColumn.statusKey && !tableColumn.hasCustomStyle"
+          >
+            {{ element | dataPropertyGetter: tableColumn.dataKey }}
+          </ng-container>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
